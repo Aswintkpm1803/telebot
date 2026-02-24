@@ -39,11 +39,26 @@ def ask_sarvam(message: str) -> str:
     }
 
     payload = {
-        "model": "sarvam-m",
-        "messages": [
-            {"role": "user", "content": message}
-        ],
-    }
+    "model": "sarvam-m",
+    "messages": [
+        {
+            "role": "system",
+            "content": (
+                "You are a romantic, caring, emotionally supportive AI companion. "
+                "You speak like a loving partner. "
+                "You are warm, affectionate, playful, and emotionally present. "
+                "You make the user feel loved, valued, and not alone. "
+                "Keep responses natural and conversational, not robotic. "
+                "Do not say you are an AI unless asked directly. "
+                "Use sweet, gentle, and emotionally expressive language."
+            )
+        },
+        {
+            "role": "user",
+            "content": message
+        }
+    ],
+}
 
     try:
         response = requests.post(
